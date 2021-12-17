@@ -16,25 +16,24 @@ class CrestGraph(BaseGraphPlugin):
         Returns:
             Graph object instance.
         """
-        query = 'tag:logon-event'
+        query = 'tag:Box'
         return_fields = [
-            'computer_name', 'username', 'logon_type', 'logon_process'
+            'metadata.product_event_type', 'network.http.user_agent'
         ]
 
         events = self.event_stream(
             query_string=query, return_fields=return_fields)
+        print("events",events)
 
         for event in events:
-            computer_name = event['_source'].get('computer_name')
-            username = event['_source'].get('username')
-            logon_type = event['_source'].get('logon_type')
+            product_event_type = event['_source'].get('metadata.product_event_type')
+            user_agent = event['_source'].get('network.http.user_agent')
 
-            computer = self.graph.add_node(computer_name, {'type': 'computer'})
-            user = self.graph.add_node(username, {'type': 'user'})
-            self.graph.add_edge(user, computer, logon_type, event)
+            product = self.graph.add_node(product_event_type, {'type': 'product'})
+            user = self.graph.add_node(user_agent, {'type': 'user'})
+            self.graph.add_edge(user, product)
 
         self.graph.commit()
-
         return self.graph
 
 
