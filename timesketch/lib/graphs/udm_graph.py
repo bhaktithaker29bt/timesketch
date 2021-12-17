@@ -4,11 +4,11 @@ from timesketch.lib.graphs.interface import BaseGraphPlugin
 from timesketch.lib.graphs import manager
 
 
-class CrestGraph(BaseGraphPlugin):
+class UDMGraph(BaseGraphPlugin):
     """Graph plugin for Windows logins."""
 
-    NAME = 'Crest_Graph'
-    DISPLAY_NAME = 'Crest Graph'
+    NAME = 'UDM_Graph'
+    DISPLAY_NAME = 'UDM Graph'
 
     def generate(self):
         """Generate the graph.
@@ -37,4 +37,4 @@ class CrestGraph(BaseGraphPlugin):
         return self.graph
 
 
-manager.GraphManager.register_graph(CrestGraph)
+manager.GraphManager.register_graph(UDMGraph)
