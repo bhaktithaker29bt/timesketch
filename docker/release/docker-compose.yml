@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   timesketch-web:
-    image: bhaktithaker/test-image-123:${TIMESKETCH_VERSION}
+    image: bhaktithaker/test-image-123:2
     environment:
       - NUM_WSGI_WORKERS=${NUM_WSGI_WORKERS}
     restart: always
@@ -12,7 +12,7 @@ services:
       - ./logs:/var/log/timesketch/
 
   timesketch-worker:
-    image: bhaktithaker/test-image-123:${TIMESKETCH_VERSION}
+    image: bhaktithaker/test-image-123:2
     environment:
       - WORKER_LOG_LEVEL=${WORKER_LOG_LEVEL}
     restart: always
